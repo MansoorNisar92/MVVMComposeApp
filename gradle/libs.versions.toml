@@ -2,7 +2,7 @@
 agp = "8.4.0"
 converterMoshi = "2.9.0"
 hiltAndroid = "2.48.1"
-hiltCompiler = "2.44"
+hiltCompiler = "2.48"
 hiltNavigationCompose = "1.2.0"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"

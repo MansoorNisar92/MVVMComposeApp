@@ -38,10 +38,3 @@ object AppModule {
         return ServicesImpl(httpClient)
     }
 }
-
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RepoModule {
-    @Binds
-    abstract fun bindServiceImpl(servicesImpl: ServicesImpl): Services
-}
