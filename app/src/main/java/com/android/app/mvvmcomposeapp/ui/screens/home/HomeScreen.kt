@@ -16,9 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -35,7 +32,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = hiltView
 
     if (isLoading) {
         NativeLoader()
-    }else {
+    } else {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -43,15 +40,15 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = hiltView
         ) {
             Text(
                 text = viewModel.greetingMessage,
-                style = MaterialTheme.typography.displayMedium
+                style = MaterialTheme.typography.titleLarge
             )
             user?.let {
                 Text(
                     text = "Welcome, ${it.username}",
-                    style = MaterialTheme.typography.displayMedium
+                    style = MaterialTheme.typography.titleLarge
                 )
             } ?: run {
-                Text(text = "Loading...", style = MaterialTheme.typography.displayMedium)
+                Text(text = "Loading...", style = MaterialTheme.typography.titleLarge)
             }
             Spacer(modifier = Modifier.height(16.dp))
             LazyColumn {
