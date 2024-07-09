@@ -33,16 +33,20 @@ class HomeViewModel @Inject constructor(
     private val _medications = MutableStateFlow<List<MedicationItem>>(emptyList())
     val medications: StateFlow<List<MedicationItem>> = _medications
 
+    private val _isLoading = MutableStateFlow<Boolean>(true)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
     val greetingMessage: String = TimeUtils.getGreetingMessage()
 
     init {
         viewModelScope.launch {
             _user.value = userDao.getUser()
-
+            _isLoading.value = true
             val localMedications = getLocalMedications()
             if (localMedications.isEmpty()) {
                 fetchAndSaveMedications()
             } else {
+                _isLoading.value = false
                 _medications.value = localMedications.toMedicationItem()
             }
         }
@@ -56,8 +60,10 @@ class HomeViewModel @Inject constructor(
         try {
             val result = medicationRepository.getMedications()
             _medications.value = result
+            _isLoading.value = false
             saveMedicationsLocally(result)
         } catch (e: Exception) {
+            _isLoading.value = false
             Log.e("HomeViewModel", e.message.toString())
         }
     }

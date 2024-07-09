@@ -15,6 +15,11 @@ class LoginViewModel @Inject constructor(
     private val appDatabase: AppDatabase
 ) : ViewModel() {
 
+    init {
+        viewModelScope.launch {
+            appDatabase.medicationDao().deleteAllMedications()
+        }
+    }
     private val _userInserted = MutableStateFlow(false)
     val userInserted: StateFlow<Boolean> = _userInserted
     fun setUsername(username: String) {
