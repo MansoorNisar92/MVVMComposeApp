@@ -51,7 +51,9 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel = hiltVi
 
         LaunchedEffect(userInserted) {
             if (userInserted) {
-                navController.navigate(Screen.Home.route)
+                navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Login.route) { inclusive = true }
+                }
             }
         }
     }

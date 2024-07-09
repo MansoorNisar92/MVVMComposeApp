@@ -1,5 +1,6 @@
 package com.android.app.mvvmcomposeapp.ui.screens.home
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -60,6 +61,12 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = hiltView
                     })
                 }
             }
+        }
+    }
+
+    BackHandler {
+        navController.navigate(Screen.Login.route) {
+            popUpTo(Screen.Home.route) { inclusive = true }
         }
     }
 }
