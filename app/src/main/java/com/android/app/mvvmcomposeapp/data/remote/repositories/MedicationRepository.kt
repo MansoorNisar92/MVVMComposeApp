@@ -1,4 +1,7 @@
 package com.android.app.mvvmcomposeapp.data.remote.repositories
 
-class MedicationRepository {
+import com.android.app.mvvmcomposeapp.data.remote.models.MedicationItem
+
+interface MedicationRepository {
+    suspend fun getMedications(): List<MedicationItem>
 }
