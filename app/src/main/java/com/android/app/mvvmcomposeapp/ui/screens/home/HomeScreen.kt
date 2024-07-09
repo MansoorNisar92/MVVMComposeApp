@@ -20,17 +20,24 @@ import com.android.app.mvvmcomposeapp.ui.navigation.Screen
 
 @Composable
 fun HomeScreen(navController: NavController, viewModel: HomeViewModel = hiltViewModel()) {
+    val user by viewModel.user.collectAsState()
     val medications by viewModel.medications.collectAsState()
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
         Text(
             text = viewModel.greetingMessage,
             style = MaterialTheme.typography.displayMedium
         )
-        Text(
-            text = "Welcome, ${viewModel.username}",
-            style = MaterialTheme.typography.displayMedium
-        )
+        user?.let {
+            Text(
+                text = "Welcome, ${it.username}",
+                style = MaterialTheme.typography.displayMedium
+            )
+        } ?: run {
+            Text(text = "Loading...", style = MaterialTheme.typography.displayMedium)
+        }
         Spacer(modifier = Modifier.height(16.dp))
         LazyColumn {
             items(medications) { medication ->
@@ -44,7 +51,10 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = hiltView
 
 @Composable
 fun MedicationCard(medication: MedicationItem, onClick: () -> Unit) {
-    Card(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp).clickable(onClick = onClick)) {
+    Card(modifier = Modifier
+        .fillMaxWidth()
+        .padding(vertical = 8.dp)
+        .clickable(onClick = onClick)) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = "Name: ${medication.name}")
             Text(text = "Dose: ${medication.dose ?: "N/A"}")

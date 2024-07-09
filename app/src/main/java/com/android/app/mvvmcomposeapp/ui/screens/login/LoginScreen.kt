@@ -11,9 +11,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -24,6 +27,8 @@ import com.android.app.mvvmcomposeapp.ui.navigation.Screen
 @Composable
 fun LoginScreen(navController: NavController, viewModel: LoginViewModel = hiltViewModel()) {
     var username by remember { mutableStateOf("") }
+    val userInserted by viewModel.userInserted.collectAsState()
+    val scope = rememberCoroutineScope()
 
     Column(
         modifier = Modifier
@@ -40,9 +45,14 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel = hiltVi
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
             viewModel.setUsername(username)
-            navController.navigate(Screen.Home.route)
         }, modifier = Modifier.fillMaxWidth()) {
             Text("Login")
+        }
+
+        LaunchedEffect(userInserted) {
+            if (userInserted) {
+                navController.navigate(Screen.Home.route)
+            }
         }
     }
 }
