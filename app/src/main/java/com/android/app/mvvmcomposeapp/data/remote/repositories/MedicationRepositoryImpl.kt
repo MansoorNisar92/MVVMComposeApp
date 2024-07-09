@@ -11,16 +11,24 @@ class MedicationRepositoryImpl @Inject constructor(
 
     override suspend fun getMedications(): List<MedicationItem> {
         val response: MedicationResponse = services.getMedications()
+        val medications = mutableListOf<MedicationItem>()
 
-        return response.problems.flatMap { (_, problem) ->
-            problem.medications.flatMap { medicationData ->
-                medicationData.medicationsClasses.flatMap { (_, medicationClass) ->
-                    val drugList = mutableListOf<MedicationItem>()
-                    drugList.addAll(medicationClass.associatedDrug)
-                    medicationClass.associatedDrug2?.let { drugList.addAll(it) }
-                    drugList
+        response.problems.forEach { problem ->
+            problem.diabetes?.forEach { detail ->
+                detail.medications?.forEach { medicationGroup ->
+                    medicationGroup.medicationsClasses?.forEach { medicationClass ->
+                        medicationClass.className?.forEach { associatedDrugGroup ->
+                            associatedDrugGroup.associatedDrugs?.let { medications.addAll(it) }
+                            associatedDrugGroup.associatedDrugs2?.let { medications.addAll(it) }
+                        }
+                        medicationClass.className2?.forEach { associatedDrugGroup ->
+                            associatedDrugGroup.associatedDrugs?.let { medications.addAll(it) }
+                            associatedDrugGroup.associatedDrugs2?.let { medications.addAll(it) }
+                        }
+                    }
                 }
             }
         }
+        return medications
     }
 }

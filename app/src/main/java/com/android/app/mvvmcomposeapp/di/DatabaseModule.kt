@@ -3,6 +3,7 @@ package com.android.app.mvvmcomposeapp.di
 import android.content.Context
 import androidx.room.Room
 import com.android.app.mvvmcomposeapp.data.local.AppDatabase
+import com.android.app.mvvmcomposeapp.data.local.MedicationDao
 import com.android.app.mvvmcomposeapp.data.local.UserDao
 import dagger.Module
 import dagger.Provides
@@ -29,5 +30,11 @@ object DatabaseModule {
     @Singleton
     fun provideUserDao(appDatabase: AppDatabase): UserDao {
         return appDatabase.userDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMedicationDao(appDatabase: AppDatabase): MedicationDao {
+        return appDatabase.medicationDao()
     }
 }
