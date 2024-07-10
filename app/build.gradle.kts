@@ -17,7 +17,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.android.app.mvvmcomposeapp.utils.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -73,6 +74,12 @@ dependencies {
     implementation (libs.androidx.hilt.navigation.compose)
     implementation (libs.hilt.android)
     kapt (libs.hilt.compiler)
+
+    implementation("com.google.dagger:hilt-android-testing:2.48.1")
+    implementation("com.google.dagger:hilt-android-testing:2.48.1")
+    implementation( "androidx.arch.core:core-testing:2.1.0")
+    implementation("com.google.truth:truth:1.1.2")
+
     implementation (libs.androidx.room.runtime)
     kapt (libs.androidx.room.compiler)
     implementation (libs.androidx.room.ktx)
@@ -84,4 +91,17 @@ dependencies {
     implementation(libs.ktor.client.serialization)
     implementation(libs.ktor.client.logging)
     implementation(libs.kotlinx.serialization.json)
+
+    // Unit Testing
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:5.1.1")
+    testImplementation("org.mockito:mockito-inline:5.1.1")
+
+    // Mockito for Kotlin
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+
+    // Coroutine testing
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0") // Ensure compatibility with your Kotlin version
+
 }
