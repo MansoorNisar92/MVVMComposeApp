@@ -1,4 +1,4 @@
-package com.android.app.mvvmcomposeapp.login
+package com.android.app.mvvmcomposeapp.ui.screens.login
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.android.app.mvvmcomposeapp.data.local.AppDatabase

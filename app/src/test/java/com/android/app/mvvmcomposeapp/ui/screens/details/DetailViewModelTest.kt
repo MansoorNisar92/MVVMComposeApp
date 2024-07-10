@@ -1,9 +1,8 @@
-package com.android.app.mvvmcomposeapp.details
+package com.android.app.mvvmcomposeapp.ui.screens.details
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.android.app.mvvmcomposeapp.data.remote.models.MedicationItem
 import com.android.app.mvvmcomposeapp.data.remote.repositories.MedicationRepository
-import com.android.app.mvvmcomposeapp.ui.screens.details.DetailViewModel
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNull
 import kotlinx.coroutines.Dispatchers

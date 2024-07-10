@@ -1,4 +1,4 @@
-package com.android.app.mvvmcomposeapp.home
+package com.android.app.mvvmcomposeapp.ui.screens.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.android.app.mvvmcomposeapp.data.local.MedicationDao
@@ -8,7 +8,6 @@ import com.android.app.mvvmcomposeapp.data.local.entities.User
 import com.android.app.mvvmcomposeapp.data.local.entities.toMedicationItem
 import com.android.app.mvvmcomposeapp.data.remote.models.MedicationItem
 import com.android.app.mvvmcomposeapp.data.remote.repositories.MedicationRepository
-import com.android.app.mvvmcomposeapp.ui.screens.home.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
