@@ -31,15 +31,15 @@ fun DetailScreen(
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
                         text = "Name: ${medication.name}",
-                        style = MaterialTheme.typography.displayMedium
+                        style = MaterialTheme.typography.titleLarge
                     )
                     Text(
                         text = "Dose: ${medication.dose ?: "N/A"}",
-                        style = MaterialTheme.typography.displayLarge
+                        style = MaterialTheme.typography.titleLarge
                     )
                     Text(
                         text = "Strength: ${medication.strength}",
-                        style = MaterialTheme.typography.displayLarge
+                        style = MaterialTheme.typography.titleLarge
                     )
                 }
             }
@@ -47,7 +47,7 @@ fun DetailScreen(
     } ?: run {
         Text(
             text = "Medication not found",
-            style = MaterialTheme.typography.displayMedium,
+            style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(16.dp)
         )
     }

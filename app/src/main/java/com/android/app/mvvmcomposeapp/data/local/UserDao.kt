@@ -10,6 +10,9 @@ interface UserDao {
     @Insert
     suspend fun insertUser(user: User)
 
-    @Query("SELECT * FROM User WHERE username = :username LIMIT 1")
-    suspend fun getUser(username: String): User?
+    @Query("SELECT * FROM User  LIMIT 1")
+    suspend fun getUser(): User?
+
+    @Query("DELETE FROM user")
+    suspend fun deleteUser()
 }
